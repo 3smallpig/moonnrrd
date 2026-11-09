@@ -1,0 +1,5 @@
+import {
+  "3smallpig/moonnrrd" @nrrd,
+}
+
+pkgtype(kind: "executable")
