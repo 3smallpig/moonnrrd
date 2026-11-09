@@ -110,6 +110,16 @@ pub fn Metadata::equal(Self, Self) -> Bool
 pub fn Metadata::not_equal(Self, Self) -> Bool
 pub fn Metadata::to_repr(Self) -> @debug.Repr
 
+pub(all) enum Reduction {
+  Sum
+  Mean
+  Minimum
+  Maximum
+} derive(Eq, @debug.Debug)
+pub fn Reduction::equal(Self, Self) -> Bool
+pub fn Reduction::not_equal(Self, Self) -> Bool
+pub fn Reduction::to_repr(Self) -> @debug.Repr
+
 pub(all) enum Scalar {
   I8
   U8
@@ -168,6 +178,7 @@ pub fn Tensor::histogram(Self, Double, Double, Int32) -> Histogram raise NrrdErr
 pub fn Tensor::metadata(Self) -> Metadata
 pub fn Tensor::new(Array[Int32], Scalar, Array[Double], metadata? : Metadata, limits? : Limits) -> Self raise NrrdError
 pub fn Tensor::permute(Self, Array[Int32], limits? : Limits) -> Self raise NrrdError
+pub fn Tensor::reduce(Self, Int32, Reduction, limits? : Limits) -> Self raise NrrdError
 pub fn Tensor::scalar(Self) -> Scalar
 pub fn Tensor::shape(Self) -> Shape
 pub fn Tensor::slice(Self, Int32, Int32, limits? : Limits) -> Self raise NrrdError

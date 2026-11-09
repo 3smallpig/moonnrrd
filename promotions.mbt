@@ -20,6 +20,12 @@ pub extend Metadata with Eq::{equal, not_equal}
 pub extend Metadata with @debug.Debug::{to_repr}
 
 ///|
+pub extend Reduction with Eq::{equal, not_equal}
+
+///|
+pub extend Reduction with @debug.Debug::{to_repr}
+
+///|
 pub extend Scalar with Eq::{equal, not_equal}
 
 ///|
