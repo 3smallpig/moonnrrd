@@ -39,3 +39,6 @@ pub extend Shape with Eq::{equal, not_equal}
 
 ///|
 pub extend Shape with @debug.Debug::{to_repr}
+
+///|
+pub extend Tensor with @debug.Debug::{to_repr}

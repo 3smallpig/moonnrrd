@@ -95,6 +95,22 @@ pub fn Shape::sample_count(Self) -> Int32
 pub fn Shape::sizes(Self) -> Array[Int32]
 pub fn Shape::to_repr(Self) -> @debug.Repr
 
+pub struct Tensor {
+  shape : Shape
+  scalar : Scalar
+  data : Array[Double]
+  metadata : Metadata
+} derive(@debug.Debug)
+pub fn Tensor::cast(Self, Scalar, limits? : Limits) -> Self raise NrrdError
+pub fn Tensor::get(Self, Array[Int32]) -> Double raise NrrdError
+pub fn Tensor::metadata(Self) -> Metadata
+pub fn Tensor::new(Array[Int32], Scalar, Array[Double], metadata? : Metadata, limits? : Limits) -> Self raise NrrdError
+pub fn Tensor::scalar(Self) -> Scalar
+pub fn Tensor::shape(Self) -> Shape
+pub fn Tensor::to_repr(Self) -> @debug.Repr
+pub fn Tensor::values(Self) -> Array[Double]
+pub fn Tensor::with_metadata(Self, Metadata) -> Self raise NrrdError
+
 // Type aliases
 
 // Traits
