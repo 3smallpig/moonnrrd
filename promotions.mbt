@@ -44,6 +44,18 @@ pub extend Shape with Eq::{equal, not_equal}
 pub extend Shape with @debug.Debug::{to_repr}
 
 ///|
+pub extend Summary with Eq::{equal, not_equal}
+
+///|
+pub extend Summary with @debug.Debug::{to_repr}
+
+///|
+pub extend Histogram with Eq::{equal, not_equal}
+
+///|
+pub extend Histogram with @debug.Debug::{to_repr}
+
+///|
 pub extend Tensor with @debug.Debug::{to_repr}
 
 ///|

@@ -73,6 +73,16 @@ pub fn Header::scalar(Self) -> Scalar
 pub fn Header::shape(Self) -> Shape
 pub fn Header::to_repr(Self) -> @debug.Repr
 
+pub(all) struct Histogram {
+  counts : Array[Int32]
+  below : Int32
+  above : Int32
+  non_finite : Int32
+} derive(Eq, @debug.Debug)
+pub fn Histogram::equal(Self, Self) -> Bool
+pub fn Histogram::not_equal(Self, Self) -> Bool
+pub fn Histogram::to_repr(Self) -> @debug.Repr
+
 pub(all) struct Limits {
   max_header_bytes : Int32
   max_samples : Int32
@@ -131,6 +141,19 @@ pub fn Shape::sample_count(Self) -> Int32
 pub fn Shape::sizes(Self) -> Array[Int32]
 pub fn Shape::to_repr(Self) -> @debug.Repr
 
+pub(all) struct Summary {
+  finite_count : Int32
+  nan_count : Int32
+  positive_infinity_count : Int32
+  negative_infinity_count : Int32
+  minimum : Double?
+  maximum : Double?
+  mean : Double?
+} derive(Eq, @debug.Debug)
+pub fn Summary::equal(Self, Self) -> Bool
+pub fn Summary::not_equal(Self, Self) -> Bool
+pub fn Summary::to_repr(Self) -> @debug.Repr
+
 pub struct Tensor {
   shape : Shape
   scalar : Scalar
@@ -141,12 +164,14 @@ pub fn Tensor::cast(Self, Scalar, limits? : Limits) -> Self raise NrrdError
 pub fn Tensor::crop(Self, Array[Int32], Array[Int32], limits? : Limits) -> Self raise NrrdError
 pub fn Tensor::flip(Self, Int32, limits? : Limits) -> Self raise NrrdError
 pub fn Tensor::get(Self, Array[Int32]) -> Double raise NrrdError
+pub fn Tensor::histogram(Self, Double, Double, Int32) -> Histogram raise NrrdError
 pub fn Tensor::metadata(Self) -> Metadata
 pub fn Tensor::new(Array[Int32], Scalar, Array[Double], metadata? : Metadata, limits? : Limits) -> Self raise NrrdError
 pub fn Tensor::permute(Self, Array[Int32], limits? : Limits) -> Self raise NrrdError
 pub fn Tensor::scalar(Self) -> Scalar
 pub fn Tensor::shape(Self) -> Shape
 pub fn Tensor::slice(Self, Int32, Int32, limits? : Limits) -> Self raise NrrdError
+pub fn Tensor::summary(Self) -> Summary
 pub fn Tensor::to_repr(Self) -> @debug.Repr
 pub fn Tensor::values(Self) -> Array[Double]
 pub fn Tensor::with_metadata(Self, Metadata) -> Self raise NrrdError
