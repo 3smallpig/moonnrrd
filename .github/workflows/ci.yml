@@ -1,0 +1,52 @@
+name: MoonNRRD verification
+on: [push, pull_request]
+permissions:
+  contents: read
+env:
+  MOONBIT_INSTALL_VERSION: "0.10.18+6c83a7f62"
+jobs:
+  targets:
+    name: target-${{ matrix.target }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [wasm-gc, wasm, js, native]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Install pinned official MoonBit
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh -o /tmp/moon-install.sh
+          bash /tmp/moon-install.sh
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+      - name: Verify toolchain
+        run: |
+          moon version --all
+          moonc -v | grep -F 'v0.10.18+6c83a7f62'
+      - run: moon check --target "${{ matrix.target }}" --deny-warn
+      - run: moon build --target "${{ matrix.target }}" --deny-warn
+      - run: moon test --target "${{ matrix.target }}" --deny-warn
+      - name: Run complete workflows
+        run: |
+          moon run examples/simulation --target "${{ matrix.target }}" --deny-warn
+          moon run examples/spatial --target "${{ matrix.target }}" --deny-warn
+          moon run examples/tensor --target "${{ matrix.target }}" --deny-warn
+      - if: matrix.target == 'js'
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - if: matrix.target == 'js'
+        name: Independent interoperability oracle
+        run: |
+          python -m pip install -r scripts/requirements-oracle.txt
+          python scripts/interop.py --check
+      - if: matrix.target == 'wasm-gc'
+        name: Check public interfaces and formatting
+        run: |
+          moon info
+          moon fmt --check
+          git diff --exit-code
