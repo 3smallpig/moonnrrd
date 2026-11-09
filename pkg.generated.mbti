@@ -6,6 +6,7 @@ import {
 }
 
 // Values
+pub fn parse_scalar(String) -> Scalar raise NrrdError
 
 // Errors
 pub(all) suberror NrrdError {
@@ -16,12 +17,36 @@ pub(all) suberror NrrdError {
 } derive(Eq, @debug.Debug)
 
 // Types and methods
+pub(all) enum Encoding {
+  Raw
+  Ascii
+  Hex
+} derive(Eq, @debug.Debug)
+
+pub(all) enum Endian {
+  Little
+  Big
+} derive(Eq, @debug.Debug)
+
 pub(all) struct Limits {
   max_header_bytes : Int32
   max_samples : Int32
   max_payload_bytes : Int32
 } derive(Eq, @debug.Debug)
 pub fn Limits::default() -> Self
+
+pub(all) enum Scalar {
+  I8
+  U8
+  I16
+  U16
+  I32
+  U32
+  F32
+  F64
+} derive(Eq, @debug.Debug)
+pub fn Scalar::name(Self) -> String
+pub fn Scalar::width(Self) -> Int32
 
 // Type aliases
 
