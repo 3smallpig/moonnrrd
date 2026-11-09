@@ -1,0 +1,35 @@
+///|
+pub extend NrrdError with Eq::{equal, not_equal}
+
+///|
+pub extend NrrdError with @debug.Debug::{to_repr}
+
+///|
+pub extend Limits with Eq::{equal, not_equal}
+
+///|
+pub extend Limits with @debug.Debug::{to_repr}
+
+///|
+pub extend Scalar with Eq::{equal, not_equal}
+
+///|
+pub extend Scalar with @debug.Debug::{to_repr}
+
+///|
+pub extend Encoding with Eq::{equal, not_equal}
+
+///|
+pub extend Encoding with @debug.Debug::{to_repr}
+
+///|
+pub extend Endian with Eq::{equal, not_equal}
+
+///|
+pub extend Endian with @debug.Debug::{to_repr}
+
+///|
+pub extend Shape with Eq::{equal, not_equal}
+
+///|
+pub extend Shape with @debug.Debug::{to_repr}

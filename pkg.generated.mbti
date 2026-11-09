@@ -15,6 +15,9 @@ pub(all) suberror NrrdError {
   Limit(String)
   Truncated(String)
 } derive(Eq, @debug.Debug)
+pub fn NrrdError::equal(Self, Self) -> Bool
+pub fn NrrdError::not_equal(Self, Self) -> Bool
+pub fn NrrdError::to_repr(Self) -> @debug.Repr
 
 // Types and methods
 pub(all) enum Encoding {
@@ -22,11 +25,17 @@ pub(all) enum Encoding {
   Ascii
   Hex
 } derive(Eq, @debug.Debug)
+pub fn Encoding::equal(Self, Self) -> Bool
+pub fn Encoding::not_equal(Self, Self) -> Bool
+pub fn Encoding::to_repr(Self) -> @debug.Repr
 
 pub(all) enum Endian {
   Little
   Big
 } derive(Eq, @debug.Debug)
+pub fn Endian::equal(Self, Self) -> Bool
+pub fn Endian::not_equal(Self, Self) -> Bool
+pub fn Endian::to_repr(Self) -> @debug.Repr
 
 pub(all) struct Limits {
   max_header_bytes : Int32
@@ -34,6 +43,9 @@ pub(all) struct Limits {
   max_payload_bytes : Int32
 } derive(Eq, @debug.Debug)
 pub fn Limits::default() -> Self
+pub fn Limits::equal(Self, Self) -> Bool
+pub fn Limits::not_equal(Self, Self) -> Bool
+pub fn Limits::to_repr(Self) -> @debug.Repr
 
 pub(all) enum Scalar {
   I8
@@ -45,8 +57,26 @@ pub(all) enum Scalar {
   F32
   F64
 } derive(Eq, @debug.Debug)
+pub fn Scalar::equal(Self, Self) -> Bool
 pub fn Scalar::name(Self) -> String
+pub fn Scalar::not_equal(Self, Self) -> Bool
+pub fn Scalar::to_repr(Self) -> @debug.Repr
 pub fn Scalar::width(Self) -> Int32
+
+pub struct Shape {
+  axes : Array[Int32]
+  strides : Array[Int32]
+  count : Int32
+} derive(Eq, @debug.Debug)
+pub fn Shape::dimension(Self) -> Int32
+pub fn Shape::equal(Self, Self) -> Bool
+pub fn Shape::indices(Self, Int32) -> Array[Int32] raise NrrdError
+pub fn Shape::new(Array[Int32], limits? : Limits) -> Self raise NrrdError
+pub fn Shape::not_equal(Self, Self) -> Bool
+pub fn Shape::offset(Self, Array[Int32]) -> Int32 raise NrrdError
+pub fn Shape::sample_count(Self) -> Int32
+pub fn Shape::sizes(Self) -> Array[Int32]
+pub fn Shape::to_repr(Self) -> @debug.Repr
 
 // Type aliases
 
