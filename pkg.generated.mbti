@@ -6,6 +6,8 @@ import {
 }
 
 // Values
+pub fn parse_header(Bytes, limits? : Limits) -> Header raise NrrdError
+
 pub fn parse_scalar(String) -> Scalar raise NrrdError
 
 // Errors
@@ -36,6 +38,24 @@ pub(all) enum Endian {
 pub fn Endian::equal(Self, Self) -> Bool
 pub fn Endian::not_equal(Self, Self) -> Bool
 pub fn Endian::to_repr(Self) -> @debug.Repr
+
+pub struct Header {
+  shape : Shape
+  scalar : Scalar
+  encoding : Encoding
+  endian : Endian
+  metadata : Metadata
+  data_file : String?
+  payload_offset : Int32
+} derive(@debug.Debug)
+pub fn Header::data_file(Self) -> String?
+pub fn Header::encoding(Self) -> Encoding
+pub fn Header::endian(Self) -> Endian
+pub fn Header::metadata(Self) -> Metadata
+pub fn Header::payload_offset(Self) -> Int32
+pub fn Header::scalar(Self) -> Scalar
+pub fn Header::shape(Self) -> Shape
+pub fn Header::to_repr(Self) -> @debug.Repr
 
 pub(all) struct Limits {
   max_header_bytes : Int32

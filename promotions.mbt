@@ -11,6 +11,9 @@ pub extend Limits with Eq::{equal, not_equal}
 pub extend Limits with @debug.Debug::{to_repr}
 
 ///|
+pub extend Header with @debug.Debug::{to_repr}
+
+///|
 pub extend Metadata with Eq::{equal, not_equal}
 
 ///|
