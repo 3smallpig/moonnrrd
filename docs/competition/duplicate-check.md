@@ -43,7 +43,7 @@ MoonCakes查询 bdf/bitmap/font/glyph、touchstone/sparameter/rf、nrrd/teem/pyn
 |[wangjiale6036-dotcom/moonnifti](https://github.com/wangjiale6036-dotcom/moonnifti)0.2.0；1230efe6e6accbbfcb63e041fe9b07326b398717|README、pkg.generated.mbti、affine.mbt和affine_wbtest.mbt|高度相邻：标量、3D/4D体素、坐标和裁剪。其核心为NIfTI单文件、qform/sform与影像缩放；本项目为1–8维NRRD轴/非空间方向、扩展文本头、分离载荷与多编码。向NIfTI库加入这些会改变其文件与轴契约，因此独立。共享基础坐标概念不冒充原创算法；调用者可显式转换数据。|
 |[milkbobo/ffmpeg-moonbit](https://github.com/milkbobo/ffmpeg-moonbit)0.4.0|libavformat/ebml.mbt与真实样本测试及Matroska源|EBML相邻/直接可复用，不选|
 
-[官方生态清单](https://github.com/moonbitlang/awesome-moonbit)README已实际读取；旧moonbit-community/awesome-moonbit地址404，不作为有效证据。社区组织仓库逐页读取，前两页各100项，继续分页到不足100项后完成筛查。读取对方测试不等于运行测试；原始响应和受限访问保存在仓库外证据。不声称绝对唯一。没有复制上述项目代码。
+[官方生态清单](https://github.com/moonbitlang/awesome-moonbit)README已实际读取；旧moonbit-community/awesome-moonbit地址404，不作为有效证据。社区组织仓库逐页读取，四页分别100、100、100、58项，已完整筛查。Token2Tensor 的 README 声明从零运行神经网络，属于模型训练方向，非 NRRD/栅格格式替代。官方清单未命中 NRRD。读取对方测试不等于运行测试；原始响应和受限访问保存在仓库外证据。不声称绝对唯一。没有复制上述项目代码。
 
 ## 并发预留与发布复核
 
