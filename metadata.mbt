@@ -26,7 +26,7 @@ pub fn Metadata::empty() -> Metadata {
     space_dimension: None,
     origin: None,
     directions: [],
-    custom: {},
+    custom: Map([]),
   }
 }
 
@@ -49,7 +49,7 @@ fn Metadata::copy_owned(self : Metadata) -> Metadata {
 ///|
 fn clean_text(text : String) -> Bool {
   for c in text.iter() {
-    if c.to_int() < 32 || c.to_int() == 127 {
+    if c.to_int() < 32 || c.to_int() > 126 {
       return false
     }
   }

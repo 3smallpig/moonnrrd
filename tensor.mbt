@@ -21,7 +21,7 @@ pub fn Tensor::new(
     raise Invalid("sample count does not match shape")
   }
   metadata.validate(shape)
-  let data = values.map(fn(v) { scalar.canonical(v) })
+  let data = values.map(v => scalar.canonical(v))
   { shape, scalar, data, metadata: metadata.copy_owned(), }
 }
 
