@@ -58,7 +58,7 @@ fn required(
 
 ///|
 fn detached_name(name : String) -> Unit raise NrrdError {
-  if name.is_empty() || name == "." || name == ".." {
+  if name.is_empty() || name == "." || name == ".." || name.to_upper() == "LIST" {
     raise Invalid("empty or relative data filename")
   }
   for c in name.iter() {

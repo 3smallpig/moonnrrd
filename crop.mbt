@@ -17,6 +17,7 @@ pub fn Tensor::crop(
       raise Invalid("crop outside raster")
     }
   }
+  ignore(shape.byte_count(self.scalar, limits))
   let values = Array::make(shape.count, 0.0)
   for i in 0..<shape.count {
     let index = shape.indices(i)
@@ -56,6 +57,7 @@ pub fn Tensor::slice(
     }
   }
   let shape = Shape::new(axes.map(fn(a) { self.shape.axes[a] }), limits~)
+  ignore(shape.byte_count(self.scalar, limits))
   let values = Array::make(shape.count, 0.0)
   for i in 0..<shape.count {
     let output_index = shape.indices(i)

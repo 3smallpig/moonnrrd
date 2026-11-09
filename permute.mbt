@@ -17,6 +17,7 @@ pub fn Tensor::permute(
     seen[axis] = true
   }
   let shape = Shape::new(axes.map(fn(a) { self.shape.axes[a] }), limits~)
+  ignore(shape.byte_count(self.scalar, limits))
   let values = Array::make(shape.count, 0.0)
   for i in 0..<shape.count {
     let new_index = shape.indices(i)
@@ -52,6 +53,8 @@ pub fn Tensor::flip(
       directions[axis] = Some(v.map(fn(x) { -x }))
     }
   }
+  ignore(Shape::new(self.shape.axes, limits~))
+  ignore(self.shape.byte_count(self.scalar, limits))
   let values = Array::make(self.shape.count, 0.0)
   for i in 0..<self.shape.count {
     let index = self.shape.indices(i)

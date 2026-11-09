@@ -167,6 +167,37 @@ fn Metadata::validate(self : Metadata, shape : Shape) -> Unit raise NrrdError {
       raise Invalid("spacing must be positive or NaN")
     }
   }
+  for axis, kind in self.kinds {
+    let fixed = match kind {
+      "stub" | "scalar" => Some(1)
+      "complex" | "2-vector" => Some(2)
+      "3-color"
+      | "RGB-color"
+      | "HSV-color"
+      | "XYZ-color"
+      | "3-vector"
+      | "3-gradient"
+      | "3-normal"
+      | "2D-symmetric-matrix" => Some(3)
+      "4-color"
+      | "RGBA-color"
+      | "4-vector"
+      | "quaternion"
+      | "2D-masked-symmetric-matrix"
+      | "2D-matrix" => Some(4)
+      "2D-masked-matrix" => Some(5)
+      "3D-symmetric-matrix" => Some(6)
+      "3D-masked-symmetric-matrix" => Some(7)
+      "3D-matrix" => Some(9)
+      "3D-masked-matrix" => Some(10)
+      _ => None
+    }
+    if fixed is Some(n) {
+      if shape.axes[axis] != n {
+        raise Invalid("fixed-size axis kind mismatch")
+      }
+    }
+  }
   let sd = self.spatial_dimension()
   if sd is Some(d) {
     if d < 1 || d > 8 {
@@ -201,7 +232,9 @@ fn Metadata::validate(self : Metadata, shape : Shape) -> Unit raise NrrdError {
   for key, value in self.custom {
     if key.is_empty() ||
       !clean_text(key) ||
-      key.contains(":=") ||
+      key.contains(":") ||
+      key.has_prefix("#") ||
+      key.trim().to_owned() != key ||
       !clean_text(value) {
       raise Invalid("custom key/value cannot be safely serialized")
     }

@@ -38,6 +38,13 @@ fn shifted_metadata(
   m : Metadata,
   offsets : Array[Int32],
 ) -> Metadata raise NrrdError {
+  if m.origin != None && m.directions.is_empty() {
+    for count in offsets {
+      if count != 0 {
+        raise Unsupported("cannot shift origin without directions")
+      }
+    }
+  }
   if m.origin is Some(origin) {
     if !m.directions.is_empty() {
       let shifted = origin.copy()

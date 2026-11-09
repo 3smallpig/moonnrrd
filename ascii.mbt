@@ -53,6 +53,11 @@ fn numeric_text(value : Double, scalar : Scalar) -> String {
   if value.is_neg_inf() {
     return "-inf"
   }
+  if (scalar == F32 || scalar == F64) &&
+    value == 0.0 &&
+    (1.0 / value).is_neg_inf() {
+    return "-0.0"
+  }
   match scalar {
     F32 | F64 => value.to_string()
     _ => value.to_int64().to_string()
