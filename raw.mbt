@@ -78,5 +78,5 @@ fn encode_raw(
       result[i * width + j] = ((bits >> shift) & 255UL).to_byte()
     }
   }
-  Bytes::from_fixedarray(result)
+  Bytes::from_array(result[:])
 }

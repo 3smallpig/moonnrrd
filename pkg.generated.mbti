@@ -12,6 +12,8 @@ pub fn parse_scalar(String) -> Scalar raise NrrdError
 
 pub fn read_nrrd(Bytes, detached? : Bytes, limits? : Limits) -> Tensor raise NrrdError
 
+pub fn write_nrrd(Tensor, encoding? : Encoding, endian? : Endian, data_file? : String, limits? : Limits) -> Encoded raise NrrdError
+
 // Errors
 pub(all) suberror NrrdError {
   Invalid(String)
@@ -24,6 +26,16 @@ pub fn NrrdError::not_equal(Self, Self) -> Bool
 pub fn NrrdError::to_repr(Self) -> @debug.Repr
 
 // Types and methods
+pub(all) struct Encoded {
+  header : Bytes
+  payload : Bytes
+  data_file : String?
+} derive(Eq, @debug.Debug)
+pub fn Encoded::attached(Self) -> Bytes raise NrrdError
+pub fn Encoded::equal(Self, Self) -> Bool
+pub fn Encoded::not_equal(Self, Self) -> Bool
+pub fn Encoded::to_repr(Self) -> @debug.Repr
+
 pub(all) enum Encoding {
   Raw
   Ascii

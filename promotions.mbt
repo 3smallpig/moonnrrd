@@ -45,3 +45,9 @@ pub extend Shape with @debug.Debug::{to_repr}
 
 ///|
 pub extend Tensor with @debug.Debug::{to_repr}
+
+///|
+pub extend Encoded with Eq::{equal, not_equal}
+
+///|
+pub extend Encoded with @debug.Debug::{to_repr}

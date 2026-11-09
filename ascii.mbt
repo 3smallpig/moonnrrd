@@ -76,5 +76,5 @@ fn encode_ascii(
     text.write_char('\n')
     size = size + token.length() + 1
   }
-  text.to_string().to_bytes()
+  @utf8.encode(text.to_string()[:])
 }

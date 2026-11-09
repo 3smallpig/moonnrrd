@@ -48,7 +48,7 @@ fn decode_hex(
   if used != expected {
     raise Truncated("hex payload")
   }
-  Bytes::from_fixedarray(result)
+  Bytes::from_array(result[:])
 }
 
 ///|
