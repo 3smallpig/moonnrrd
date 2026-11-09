@@ -4,3 +4,7 @@ import {
   "moonbitlang/core/float",
   "moonbitlang/core/debug",
 }
+
+import {
+  "3smallpig/moonnrrd" @nrrd,
+} for "test"
