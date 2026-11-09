@@ -10,6 +10,8 @@ pub fn parse_header(Bytes, limits? : Limits) -> Header raise NrrdError
 
 pub fn parse_scalar(String) -> Scalar raise NrrdError
 
+pub fn read_nrrd(Bytes, detached? : Bytes, limits? : Limits) -> Tensor raise NrrdError
+
 // Errors
 pub(all) suberror NrrdError {
   Invalid(String)
