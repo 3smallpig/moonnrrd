@@ -136,6 +136,7 @@ pub struct Tensor {
   metadata : Metadata
 } derive(@debug.Debug)
 pub fn Tensor::cast(Self, Scalar, limits? : Limits) -> Self raise NrrdError
+pub fn Tensor::crop(Self, Array[Int32], Array[Int32], limits? : Limits) -> Self raise NrrdError
 pub fn Tensor::flip(Self, Int32, limits? : Limits) -> Self raise NrrdError
 pub fn Tensor::get(Self, Array[Int32]) -> Double raise NrrdError
 pub fn Tensor::metadata(Self) -> Metadata
@@ -143,6 +144,7 @@ pub fn Tensor::new(Array[Int32], Scalar, Array[Double], metadata? : Metadata, li
 pub fn Tensor::permute(Self, Array[Int32], limits? : Limits) -> Self raise NrrdError
 pub fn Tensor::scalar(Self) -> Scalar
 pub fn Tensor::shape(Self) -> Shape
+pub fn Tensor::slice(Self, Int32, Int32, limits? : Limits) -> Self raise NrrdError
 pub fn Tensor::to_repr(Self) -> @debug.Repr
 pub fn Tensor::values(Self) -> Array[Double]
 pub fn Tensor::with_metadata(Self, Metadata) -> Self raise NrrdError
