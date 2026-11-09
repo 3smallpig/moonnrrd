@@ -47,6 +47,23 @@ pub fn Limits::equal(Self, Self) -> Bool
 pub fn Limits::not_equal(Self, Self) -> Bool
 pub fn Limits::to_repr(Self) -> @debug.Repr
 
+pub(all) struct Metadata {
+  content : String?
+  labels : Array[String]
+  units : Array[String]
+  kinds : Array[String]
+  spacings : Array[Double]
+  space : String?
+  space_dimension : Int32?
+  origin : Array[Double]?
+  directions : Array[Array[Double]?]
+  custom : Map[String, String]
+} derive(Eq, @debug.Debug)
+pub fn Metadata::empty() -> Self
+pub fn Metadata::equal(Self, Self) -> Bool
+pub fn Metadata::not_equal(Self, Self) -> Bool
+pub fn Metadata::to_repr(Self) -> @debug.Repr
+
 pub(all) enum Scalar {
   I8
   U8
