@@ -48,3 +48,7 @@ MoonCakes查询 bdf/bitmap/font/glyph、touchstone/sparameter/rf、nrrd/teem/pyn
 ## 并发预留与发布复核
 
 使用固定project-registry.md.lock排他句柄重读相关指纹，同目录临时文件原子替换追加预留。发布前重查核心接口read_nrrd、space directions、detached NRRD并补记实测结果。
+
+## 发布前实际复核（2026-11-09）
+
+GitHub code search 对 read_nrrd、space directions + NRRD、NRRD0005 三项核心行为查询均 total_count=0，incomplete_results=false，排除本项目；这仅证明当前公开索引范围内未发现对应结果，不是唯一性裁决。MoonCakes 精确模块版本查询返回404，发布门禁仍会重新检查权威manifest。官方组织358项仓库、官方清单及相邻MoonNIfTI源码/测试的比较如上。
