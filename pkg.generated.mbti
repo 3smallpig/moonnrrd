@@ -6,6 +6,8 @@ import {
 }
 
 // Values
+pub fn concatenate(Tensor, Tensor, Int32, limits? : Limits) -> Tensor raise NrrdError
+
 pub fn parse_header(Bytes, limits? : Limits) -> Header raise NrrdError
 
 pub fn parse_scalar(String) -> Scalar raise NrrdError
