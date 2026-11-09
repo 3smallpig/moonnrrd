@@ -144,6 +144,7 @@ pub fn Tensor::shape(Self) -> Shape
 pub fn Tensor::to_repr(Self) -> @debug.Repr
 pub fn Tensor::values(Self) -> Array[Double]
 pub fn Tensor::with_metadata(Self, Metadata) -> Self raise NrrdError
+pub fn Tensor::world(Self, Array[Double]) -> Array[Double] raise NrrdError
 
 // Type aliases
 
