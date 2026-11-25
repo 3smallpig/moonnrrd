@@ -1,5 +1,6 @@
 ///|
 /// Only finite samples participate in numeric aggregates.
+#derive(Debug, Eq)
 pub(all) struct Summary {
   finite_count : Int32
   nan_count : Int32
@@ -8,7 +9,7 @@ pub(all) struct Summary {
   minimum : Double?
   maximum : Double?
   mean : Double?
-} derive(Debug, Eq)
+}
 
 ///|
 pub fn Tensor::summary(self : Tensor) -> Summary {
@@ -61,12 +62,13 @@ pub fn Tensor::summary(self : Tensor) -> Summary {
 }
 
 ///|
+#derive(Debug, Eq)
 pub(all) struct Histogram {
   counts : Array[Int32]
   below : Int32
   above : Int32
   non_finite : Int32
-} derive(Debug, Eq)
+}
 
 ///|
 /// Equal-width bins over [lower, upper], with the upper endpoint in the last bin.

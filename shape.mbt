@@ -1,10 +1,11 @@
 ///|
 /// Immutable, owned row-major-in-NRRD-order shape (axis zero is fastest).
+#derive(Debug, Eq)
 pub struct Shape {
   axes : Array[Int32]
   strides : Array[Int32]
   count : Int32
-} derive(Debug, Eq)
+}
 
 ///|
 pub fn Shape::new(

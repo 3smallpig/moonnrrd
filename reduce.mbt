@@ -1,10 +1,11 @@
 ///|
+#derive(Debug, Eq)
 pub(all) enum Reduction {
   Sum
   Mean
   Minimum
   Maximum
-} derive(Debug, Eq)
+}
 
 ///|
 /// Ignore nonfinite inputs; all-nonfinite groups produce NaN, output is F64.

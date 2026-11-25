@@ -1,11 +1,12 @@
 ///|
 /// Immutable scalar raster. Values are canonical for the declared scalar type.
+#derive(Debug)
 pub struct Tensor {
   shape : Shape
   scalar : Scalar
   data : Array[Double]
   metadata : Metadata
-} derive(Debug)
+}
 
 ///|
 pub fn Tensor::new(

@@ -17,44 +17,49 @@ pub fn read_nrrd(Bytes, detached? : Bytes, limits? : Limits) -> Tensor raise Nrr
 pub fn write_nrrd(Tensor, encoding? : Encoding, endian? : Endian, data_file? : String, limits? : Limits) -> Encoded raise NrrdError
 
 // Errors
+#derive(Eq, @debug.Debug)
 pub(all) suberror NrrdError {
   Invalid(String)
   Unsupported(String)
   Limit(String)
   Truncated(String)
-} derive(Eq, @debug.Debug)
+}
 pub fn NrrdError::equal(Self, Self) -> Bool
 pub fn NrrdError::not_equal(Self, Self) -> Bool
 pub fn NrrdError::to_repr(Self) -> @debug.Repr
 
 // Types and methods
+#derive(Eq, @debug.Debug)
 pub(all) struct Encoded {
   header : Bytes
   payload : Bytes
   data_file : String?
-} derive(Eq, @debug.Debug)
+}
 pub fn Encoded::attached(Self) -> Bytes raise NrrdError
 pub fn Encoded::equal(Self, Self) -> Bool
 pub fn Encoded::not_equal(Self, Self) -> Bool
 pub fn Encoded::to_repr(Self) -> @debug.Repr
 
+#derive(Eq, @debug.Debug)
 pub(all) enum Encoding {
   Raw
   Ascii
   Hex
-} derive(Eq, @debug.Debug)
+}
 pub fn Encoding::equal(Self, Self) -> Bool
 pub fn Encoding::not_equal(Self, Self) -> Bool
 pub fn Encoding::to_repr(Self) -> @debug.Repr
 
+#derive(Eq, @debug.Debug)
 pub(all) enum Endian {
   Little
   Big
-} derive(Eq, @debug.Debug)
+}
 pub fn Endian::equal(Self, Self) -> Bool
 pub fn Endian::not_equal(Self, Self) -> Bool
 pub fn Endian::to_repr(Self) -> @debug.Repr
 
+#derive(@debug.Debug)
 pub struct Header {
   shape : Shape
   scalar : Scalar
@@ -63,7 +68,7 @@ pub struct Header {
   metadata : Metadata
   data_file : String?
   payload_offset : Int32
-} derive(@debug.Debug)
+}
 pub fn Header::data_file(Self) -> String?
 pub fn Header::encoding(Self) -> Encoding
 pub fn Header::endian(Self) -> Endian
@@ -73,26 +78,29 @@ pub fn Header::scalar(Self) -> Scalar
 pub fn Header::shape(Self) -> Shape
 pub fn Header::to_repr(Self) -> @debug.Repr
 
+#derive(Eq, @debug.Debug)
 pub(all) struct Histogram {
   counts : Array[Int32]
   below : Int32
   above : Int32
   non_finite : Int32
-} derive(Eq, @debug.Debug)
+}
 pub fn Histogram::equal(Self, Self) -> Bool
 pub fn Histogram::not_equal(Self, Self) -> Bool
 pub fn Histogram::to_repr(Self) -> @debug.Repr
 
+#derive(Eq, @debug.Debug)
 pub(all) struct Limits {
   max_header_bytes : Int32
   max_samples : Int32
   max_payload_bytes : Int32
-} derive(Eq, @debug.Debug)
+}
 pub fn Limits::default() -> Self
 pub fn Limits::equal(Self, Self) -> Bool
 pub fn Limits::not_equal(Self, Self) -> Bool
 pub fn Limits::to_repr(Self) -> @debug.Repr
 
+#derive(Eq, @debug.Debug)
 pub(all) struct Metadata {
   content : String?
   labels : Array[String]
@@ -104,22 +112,24 @@ pub(all) struct Metadata {
   origin : Array[Double]?
   directions : Array[Array[Double]?]
   custom : Map[String, String]
-} derive(Eq, @debug.Debug)
+}
 pub fn Metadata::empty() -> Self
 pub fn Metadata::equal(Self, Self) -> Bool
 pub fn Metadata::not_equal(Self, Self) -> Bool
 pub fn Metadata::to_repr(Self) -> @debug.Repr
 
+#derive(Eq, @debug.Debug)
 pub(all) enum Reduction {
   Sum
   Mean
   Minimum
   Maximum
-} derive(Eq, @debug.Debug)
+}
 pub fn Reduction::equal(Self, Self) -> Bool
 pub fn Reduction::not_equal(Self, Self) -> Bool
 pub fn Reduction::to_repr(Self) -> @debug.Repr
 
+#derive(Eq, @debug.Debug)
 pub(all) enum Scalar {
   I8
   U8
@@ -129,18 +139,19 @@ pub(all) enum Scalar {
   U32
   F32
   F64
-} derive(Eq, @debug.Debug)
+}
 pub fn Scalar::equal(Self, Self) -> Bool
 pub fn Scalar::name(Self) -> String
 pub fn Scalar::not_equal(Self, Self) -> Bool
 pub fn Scalar::to_repr(Self) -> @debug.Repr
 pub fn Scalar::width(Self) -> Int32
 
+#derive(Eq, @debug.Debug)
 pub struct Shape {
   axes : Array[Int32]
   strides : Array[Int32]
   count : Int32
-} derive(Eq, @debug.Debug)
+}
 pub fn Shape::dimension(Self) -> Int32
 pub fn Shape::equal(Self, Self) -> Bool
 pub fn Shape::indices(Self, Int32) -> Array[Int32] raise NrrdError
@@ -151,6 +162,7 @@ pub fn Shape::sample_count(Self) -> Int32
 pub fn Shape::sizes(Self) -> Array[Int32]
 pub fn Shape::to_repr(Self) -> @debug.Repr
 
+#derive(Eq, @debug.Debug)
 pub(all) struct Summary {
   finite_count : Int32
   nan_count : Int32
@@ -159,17 +171,18 @@ pub(all) struct Summary {
   minimum : Double?
   maximum : Double?
   mean : Double?
-} derive(Eq, @debug.Debug)
+}
 pub fn Summary::equal(Self, Self) -> Bool
 pub fn Summary::not_equal(Self, Self) -> Bool
 pub fn Summary::to_repr(Self) -> @debug.Repr
 
+#derive(@debug.Debug)
 pub struct Tensor {
   shape : Shape
   scalar : Scalar
   data : Array[Double]
   metadata : Metadata
-} derive(@debug.Debug)
+}
 pub fn Tensor::cast(Self, Scalar, limits? : Limits) -> Self raise NrrdError
 pub fn Tensor::crop(Self, Array[Int32], Array[Int32], limits? : Limits) -> Self raise NrrdError
 pub fn Tensor::flip(Self, Int32, limits? : Limits) -> Self raise NrrdError

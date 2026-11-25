@@ -1,6 +1,7 @@
 ///|
 /// Input metadata. Tensor construction and access perform deep copies.
 /// Empty per-axis lists mean absent; nonempty lists must cover every axis.
+#derive(Debug, Eq)
 pub(all) struct Metadata {
   content : String?
   labels : Array[String]
@@ -12,7 +13,7 @@ pub(all) struct Metadata {
   origin : Array[Double]?
   directions : Array[Array[Double]?]
   custom : Map[String, String]
-} derive(Debug, Eq)
+}
 
 ///|
 pub fn Metadata::empty() -> Metadata {

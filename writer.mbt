@@ -1,10 +1,11 @@
 ///|
 /// Separate buffers; attached() combines them only for an attached plan.
+#derive(Debug, Eq)
 pub(all) struct Encoded {
   header : Bytes
   payload : Bytes
   data_file : String?
-} derive(Debug, Eq)
+}
 
 ///|
 pub fn Encoded::attached(self : Encoded) -> Bytes raise NrrdError {

@@ -1,5 +1,6 @@
 ///|
 /// Scalar samples are exposed as Double; all supported integers are exact.
+#derive(Debug, Eq)
 pub(all) enum Scalar {
   I8
   U8
@@ -9,20 +10,22 @@ pub(all) enum Scalar {
   U32
   F32
   F64
-} derive(Debug, Eq)
+}
 
 ///|
+#derive(Debug, Eq)
 pub(all) enum Encoding {
   Raw
   Ascii
   Hex
-} derive(Debug, Eq)
+}
 
 ///|
+#derive(Debug, Eq)
 pub(all) enum Endian {
   Little
   Big
-} derive(Debug, Eq)
+}
 
 ///|
 pub fn Scalar::width(self : Scalar) -> Int32 {

@@ -3,7 +3,7 @@ on: [push, pull_request]
 permissions:
   contents: read
 env:
-  MOONBIT_INSTALL_VERSION: "0.10.18+6c83a7f62"
+  MOONBIT_INSTALL_VERSION: "0.10.22+124d61d05"
 jobs:
   targets:
     name: target-${{ matrix.target }}
@@ -26,7 +26,7 @@ jobs:
       - name: Verify toolchain
         run: |
           moon version --all
-          moonc -v | grep -F 'v0.10.18+6c83a7f62'
+          moonc -v | grep -F 'v0.10.22+124d61d05'
       - run: moon check --target "${{ matrix.target }}" --deny-warn
       - run: moon build --target "${{ matrix.target }}" --deny-warn
       - run: moon test --target "${{ matrix.target }}" --deny-warn

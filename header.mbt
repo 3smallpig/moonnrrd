@@ -1,5 +1,6 @@
 ///|
 /// Validated header plan; payload is never opened implicitly.
+#derive(Debug)
 pub struct Header {
   shape : Shape
   scalar : Scalar
@@ -8,7 +9,7 @@ pub struct Header {
   metadata : Metadata
   data_file : String?
   payload_offset : Int32
-} derive(Debug)
+}
 
 ///|
 pub fn Header::shape(self : Header) -> Shape {

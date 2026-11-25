@@ -1,19 +1,21 @@
 ///|
 /// Structured failures shared by codecs and tensor operations.
+#derive(Debug, Eq)
 pub(all) suberror NrrdError {
   Invalid(String)
   Unsupported(String)
   Limit(String)
   Truncated(String)
-} derive(Debug, Eq)
+}
 
 ///|
 /// Resource limits are per operation, before allocation or dimension products.
+#derive(Debug, Eq)
 pub(all) struct Limits {
   max_header_bytes : Int32
   max_samples : Int32
   max_payload_bytes : Int32
-} derive(Debug, Eq)
+}
 
 ///|
 pub fn Limits::default() -> Limits {
