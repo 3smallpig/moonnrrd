@@ -1,6 +1,6 @@
 # MoonNRRD
 
-纯 MoonBit 的有界 NRRD 标量栅格交换库与轴语义变换工具。模块为 `3smallpig/moonnrrd@0.1.1`，许可证为 MIT。
+纯 MoonBit 的有界 NRRD 标量栅格交换库与轴语义变换工具。模块为 `3smallpig/moonnrrd@0.1.2`，许可证为 MIT。
 
 科学模拟产生的多维数组、含通道的科研栅格以及传感器时间序列，都需要在数组样本、轴含义和外部交换文件之间保持一致。本库直接处理 NRRD 文本头及载荷，并在裁剪、翻转、置换时同步空间原点和方向。它提供数据交换与数值处理能力，不提供医学诊断。
 
@@ -16,12 +16,12 @@
 
 ## 安装与环境
 
-使用官方 MoonBit 工具链；赛事要求 `moonc >= 0.10.16`。本版本固定验证 `moonc v0.10.18+6c83a7f62`、`moon 0.1.20261028`。CI 在 Linux 上验证 wasm-gc、wasm、js、native 四目标。JS 示例需要 Node.js；native 需要 C 编译器。运行时仅依赖官方 MoonBit core，无 Python 或 C 格式库依赖。
+使用官方 MoonBit 工具链；赛事要求 `moonc >= 0.10.16`。本版本固定验证 `moonc v0.10.22+124d61d05`、`moon 0.1.20261119`。CI 在 Linux 上验证 wasm-gc、wasm、js、native 四目标。JS 示例需要 Node.js；native 需要 C 编译器。运行时仅依赖官方 MoonBit core，无 Python 或 C 格式库依赖。
 
 在自己的模块目录执行：
 
 ```sh
-moon add 3smallpig/moonnrrd@0.1.1
+moon add 3smallpig/moonnrrd@0.1.2
 ```
 
 在使用库的 `moon.pkg` 中导入：
